@@ -48,3 +48,8 @@ Create a file.yml with the name of the task. You can git my personal tasks.
 
 ## Run it!
 `ansible-playbook -i hosts Mikrotik_Backup.yml -vvv`
+
+## Add to crontab
+`crontab -e`
+Every sunday of every month at 03:59 am
+`59 03 * * 0 /bin/ansible-playbook -i /home/ansible/hosts /home/ansible/Mikrotik_Backup.yml > /home/ansible/log_ansible.log 2>&`
