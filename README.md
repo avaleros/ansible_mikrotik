@@ -20,12 +20,31 @@ tested On Ubuntu 18.04
 
 `sudo adduser ansible`
 
+## Create ssh key
+`ssh-keygen -t rsa -b 2048 -m PEM`
+
 ## Create user on Mikrotik
 
 `/user add name=ansible password=**** group=full disabled=no`
 
-## Create ssh key
-`ssh-keygen -t rsa -b 2048 -m PEM`
+Then, we need to import the public key to Mikrotik on /system/users
 
-Then, we need to import the key to Mikrotik on /system/users
+## Edit /etc/ansible/hosts file
+Now, we need to add our mikrotik devices. Create a list [*here*] and add the ipaddress of devices.
+Add variables. I prefed create one variable for each list created.
+We need:
 
+[*list*:vars]
+ansible_user = ansible
+ansible_network_os = routeros
+ansible_connection = network_cli
+ansible_port=*22*
+gather_factes=false
+
+Save and exit from file.
+
+## Create the playbook
+Create a file.yml with the name of the task. You can git my personal tasks.
+
+## Run it!
+`ansible-playbook -i hosts Mikrotik_Backup.yml -vvv`
