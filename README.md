@@ -14,6 +14,7 @@ tested On Ubuntu 18.04
 ## Install aditionals packages:
 
 `sudo apt install python2-pip python3-pip`
+
 `sudo pip install paramiko`
 
 ## Create user on Ubuntu
@@ -36,9 +37,13 @@ We need:
 
 [*list*:vars]
 `ansible_user = ansible`
+
 `ansible_network_os = routeros`
+
 `ansible_connection = network_cli`
+
 `ansible_port=*22*`
+
 `gather_factes=false`
 
 Save and exit from file.
@@ -51,5 +56,7 @@ Create a file.yml with the name of the task. You can git my personal tasks.
 
 ## Add to crontab
 `crontab -e`
+
 Every sunday of every month at 03:59 am
+
 `59 03 * * 0 /bin/ansible-playbook -i /home/ansible/hosts /home/ansible/Mikrotik_Backup.yml > /home/ansible/log_ansible.log 2>&`
