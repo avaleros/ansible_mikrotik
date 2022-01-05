@@ -35,11 +35,11 @@ Add variables. I prefed create one variable for each list created.
 We need:
 
 [*list*:vars]
-ansible_user = ansible
-ansible_network_os = routeros
-ansible_connection = network_cli
-ansible_port=*22*
-gather_factes=false
+`ansible_user = ansible`
+`ansible_network_os = routeros`
+`ansible_connection = network_cli`
+`ansible_port=*22*`
+`gather_factes=false`
 
 Save and exit from file.
 
