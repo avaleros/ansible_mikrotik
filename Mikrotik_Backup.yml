@@ -1,0 +1,29 @@
+
+---
+- name: Backup de hosts Mikrotik
+  hosts: HOST_LIST
+  gather_facts: no
+  ignore_errors: yes
+
+  vars:
+    ftp_server_var: "FTP_SERVER"
+    ftp_user_var: "FTP_USER"
+    ftp_pass_var: "FTP_PASSWD"
+    date: "{{ lookup('pipe', 'date +%Y-%m-%d@%H:%M:%S') }}"
+  tasks:
+
+     - name: Backup host config (file.backup) - Mikrotik
+       routeros_command:
+         commands:
+           - /system backup save name "{{ inventory_hostname }}"
+           - /tool fetch address={{ ftp_server_var }} src-path={{ inventory_hostname }}.backup user={{ ftp_user_var }} password={{ ft$
+           - :delay 5
+           - /file remove "{{ inventory_hostname }}.backup"
+
+     - name: Backup host config (file.src) - Mikrotik
+       routeros_command:
+         commands:
+           - /export file={{ inventory_hostname }}
+           - /tool fetch address={{ ftp_server_var }} src-path={{ inventory_hostname }}.rsc user={{ ftp_user_var }} password={{ ftp_p$
+           - :delay 5
+           - /file remove "{{ inventory_hostname }}.rsc"
