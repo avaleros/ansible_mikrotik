@@ -3,19 +3,19 @@
 
 tested On Ubuntu 18.04
 
-`sudo apt update && apt upgrade`
+`sudo apt update`
 
 `sudo apt install software-properties-common`
 
 `sudo add-apt-repository --yes --update ppa:ansible/ansible`
 
-`sudo apt install ansible`
+`sudo apt install python3 python3-pip ansible -y`
 
 ## Install aditionals packages:
 
-`sudo apt install python2-pip python3-pip`
+`sudo pip3 install --upgrade pip`
 
-`sudo pip install paramiko`
+`sudo pip3 install paramiko`
 
 ## Create user on Ubuntu
 
@@ -26,9 +26,9 @@ tested On Ubuntu 18.04
 
 ## Create user on Mikrotik
 
-`/user add name=ansible password=**** group=full disabled=no`
-
-Then, we need to import the public key to Mikrotik on /system/users
+`user add name=ansible password=*********** group=full comment="usuario ansible"`
+`user ssh-keys import public-key-file=id_rsa.pub user=ansible`
+`file remove id_rsa.pub`
 
 ## Edit /etc/ansible/hosts file
 Now, we need to add our mikrotik devices. Create a list [*here*] and add the ipaddress of devices.
