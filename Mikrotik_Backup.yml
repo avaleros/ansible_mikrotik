@@ -15,7 +15,7 @@
        routeros_command:
          commands:
            - /system backup save name "{{ inventory_hostname }}"
-           - /tool fetch address={{ ftp_server_var }} src-path={{ inventory_hostname }}.backup user={{ ftp_user_var }} password={{ ft$
+           - /tool fetch address={{ ftp_server_var }} src-path={{ inventory_hostname }}.backup user={{ ftp_user_var }} password={{ ftp_pass_var }} upload=yes port=21 mode=ftp dst-path=/{{ inventory_hostname }}_config.{{ date }}.backup
            - :delay 5
            - /file remove "{{ inventory_hostname }}.backup"
 
@@ -23,6 +23,6 @@
        routeros_command:
          commands:
            - /export file={{ inventory_hostname }}
-           - /tool fetch address={{ ftp_server_var }} src-path={{ inventory_hostname }}.rsc user={{ ftp_user_var }} password={{ ftp_p$
+           - /tool fetch address={{ ftp_server_var }} src-path={{ inventory_hostname }}.rsc user={{ ftp_user_var }} password={{ ftp_pass_var }} upload=yes port=21 mode=ftp dst-path=/{{ inventory_hostname }}_config.{{ date }}.rsc
            - :delay 5
            - /file remove "{{ inventory_hostname }}.rsc"
