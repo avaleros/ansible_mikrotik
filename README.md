@@ -3,7 +3,7 @@
 
 tested On Ubuntu 18.04
 
-`sudo apt update`
+`sudo apt update && apt upgrade`
 
 `sudo apt install software-properties-common`
 
