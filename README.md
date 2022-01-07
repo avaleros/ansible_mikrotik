@@ -71,3 +71,7 @@ Create a file.yml with the name of the task. You can git my personal tasks.
 Every sunday of every month at 03:59 am
 
 `59 03 * * 0 /bin/ansible-playbook -i /etc/ansible/hosts /etc/ansible/tasks/Mikrotik_Backup.yml > /home/ansible/log_ansible.log 2>&`
+
+## More
+You can install playbooks comunnity:
+`ansible-galaxy collection install community.routeros`
