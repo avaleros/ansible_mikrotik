@@ -17,6 +17,14 @@ tested on Ubuntu 18.04
 
 `sudo pip3 install paramiko`
 
+## Modify ansible.cnf
+In the file **/etc/ansible/ansible.cfg** we will add the following line inside the [defaults] section to hide some errors in the execution of the Ansible playbook:
+`deprecation_warnings=False`
+
+Also we added another line to uncheck the host key ssh. If you don't do that you need to connect for first time at all Mikrotik devices by ssh.
+
+`host_key_checking=False`
+
 ## Create user on Ubuntu
 
 `sudo adduser ansible`
