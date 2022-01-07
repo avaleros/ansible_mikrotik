@@ -1,7 +1,7 @@
 # Ansible for Mikrotik
 ## Install Ansible
 
-tested On Ubuntu 18.04
+tested on Ubuntu 18.04
 
 `sudo apt update`
 
@@ -27,15 +27,18 @@ tested On Ubuntu 18.04
 ## Create user on Mikrotik
 
 `user add name=ansible password=*********** group=full comment="usuario ansible"`
+
 `user ssh-keys import public-key-file=id_rsa.pub user=ansible`
+
 `file remove id_rsa.pub`
 
 ## Edit /etc/ansible/hosts file
 Now, we need to add our mikrotik devices. Create a list [*here*] and add the ipaddress of devices.
-Add variables. I prefed create one variable for each list created.
+Add variables. I prefer create one variable for each list created.
 We need:
 
 [*list*:vars]
+
 `ansible_user = ansible`
 
 `ansible_network_os = routeros`
@@ -49,6 +52,8 @@ We need:
 Save and exit from file.
 
 ## Create the playbook
+`sudo mkdir /etc/ansible/tasks`
+
 Create a file.yml with the name of the task. You can git my personal tasks.
 
 ## Run it!
@@ -59,4 +64,4 @@ Create a file.yml with the name of the task. You can git my personal tasks.
 
 Every sunday of every month at 03:59 am
 
-`59 03 * * 0 /bin/ansible-playbook -i /home/ansible/hosts /home/ansible/Mikrotik_Backup.yml > /home/ansible/log_ansible.log 2>&`
+`59 03 * * 0 /bin/ansible-playbook -i /etc/ansible/hosts /etc/ansible/tasks/Mikrotik_Backup.yml > /home/ansible/log_ansible.log 2>&`
