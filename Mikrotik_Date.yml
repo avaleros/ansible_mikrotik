@@ -1,0 +1,16 @@
+---
+- name: Spain date Mikrotik
+  hosts: mikrotik_HOST
+  gather_facts: no
+  ignore_errors: yes
+
+  vars:
+#    date: "{{ lookup('pipe', 'date +%Y-%m-%d@%H:%M:%S') }}"
+    date: "{{ lookup('pipe', 'date +%h/%d/%Y') }}"
+    hour: "{{ lookup('pipe', 'date +%H:%M:%S') }}"
+
+  tasks:
+     - name: Set hour Mikrotik
+       routeros_command:
+         commands:
+           - /system clock set time-zone-name=Europe/Madrid time="{{ hour }}" date="{{ date}}"
